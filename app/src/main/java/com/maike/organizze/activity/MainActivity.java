@@ -1,4 +1,4 @@
-package com.maike.organizze;
+package com.maike.organizze.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,7 @@ import android.view.View;
 
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
-import com.maike.organizze.activity.CadastroActivity;
-import com.maike.organizze.activity.LoginActivity;
+import com.maike.organizze.R;
 
 public class MainActivity extends IntroActivity {
 
