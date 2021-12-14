@@ -1,5 +1,6 @@
 package com.maike.organizze.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -33,9 +34,13 @@ public class PrincipalActivity extends AppCompatActivity {
 
     public void adicionarDespesa(View view){
 
+        startActivity(new Intent(this, DespesasActivity.class));
+
     }
 
     public void adicionarReceita(View view){
+
+        startActivity(new Intent(this, ReceitasActivity.class));
 
     }
 
