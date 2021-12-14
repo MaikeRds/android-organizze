@@ -20,7 +20,9 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.maike.organizze.R;
 import com.maike.organizze.config.ConfiguracaoFirebase;
+import com.maike.organizze.helper.Base64Custom;
 import com.maike.organizze.model.Usuario;
+import com.maike.organizze.repository.UsuarioRepository;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -30,10 +32,14 @@ public class CadastroActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private Usuario usuario;
 
+    private UsuarioRepository usuarioRepository = new UsuarioRepository();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
+
+
 
         editNome = findViewById(R.id.editNome);
         editEmail = findViewById(R.id.editEmail);
@@ -82,6 +88,10 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+
+                    String idUsuario = Base64Custom.codificarBase64(usuario.getEmail());
+                    usuario.setIdUsuario(idUsuario);
+                    usuarioRepository.salvar(usuario);
                     Toast.makeText(CadastroActivity.this, "Sucesso ao cadastrar usuário!", Toast.LENGTH_SHORT).show();
                     finish();
                 }else{
