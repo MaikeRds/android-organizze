@@ -9,11 +9,11 @@ import com.maike.organizze.model.Movimentacao;
 import com.maike.organizze.model.Usuario;
 
 public class MovimentacaoRepository {
+
     private DatabaseReference databaseReference = ConfiguracaoFirebase.getFirebaseDatabase();
+    private FirebaseAuth auth = ConfiguracaoFirebase.getFirebaseAutenticacao();
 
     public void salvar(Movimentacao movimentacao){
-
-        FirebaseAuth auth = ConfiguracaoFirebase.getFirebaseAutenticacao();
 
         String idUsuario = Base64Custom.codificarBase64(auth.getCurrentUser().getEmail());
 
@@ -22,5 +22,9 @@ public class MovimentacaoRepository {
                 .child(DateCustom.mesAnoDataEscolhida(movimentacao.getData()))
                 .push()
                 .setValue(movimentacao);
+    }
+
+    public void recuperarDespesaTotal(){
+
     }
 }
